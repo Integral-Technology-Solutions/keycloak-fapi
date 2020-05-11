@@ -11,7 +11,23 @@ The final goal is, of course, to receive official FAPI OpenID Provider Certifica
 * [Docker Compose](https://docs.docker.com/compose/)
 * JDK and [Maven](https://maven.apache.org/)
 
-### Run FAPI Conformance suite server
+### Run FAPI Conformance suite server - Automated Approach
+
+Edit `hosts` file as per the [Modify your hosts file](#Modify-your-hosts-file) section
+
+Run the following script from the basedir
+
+```
+./run-test-suite.sh <KEYCLOAK_BASE_IMAGE>
+```
+
+Observe test logs for test results. If no arg is provided for <KEYCLOAK_BASE_IMAGE>, the base image used for testing will be `jboss/keycloak:latest`
+
+Tests can still be run manually after all containers have started using the OpenID testing UI as per the [Run FAPI Conformance test plan](#Run-FAPI-Conformance-test-plan) section of this document.
+
+To gracefully shut down the test suite, simply hit `CTRL+C`
+
+### Run FAPI Conformance suite server - Manual Browser UI Approach
 
 Clone [FAPI Conformance suite repository](https://gitlab.com/openid/conformance-suite) and move into the directory.
 

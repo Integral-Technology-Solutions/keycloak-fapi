@@ -1,4 +1,4 @@
-FROM jboss/keycloak:6.0.1
+FROM ${KEYCLOAK_BASE_IMAGE}
 
 USER root
 

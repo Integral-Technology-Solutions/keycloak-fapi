@@ -1,5 +1,8 @@
 version: '3'
 services:
+  conformance_suite:
+    build:
+      context: ./conformance-suite
   load_balancer:
     build:
       context: ./load-balancer
@@ -33,6 +36,7 @@ services:
     environment:
      - KEYCLOAK_USER=${KEYCLOAK_USER}
      - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
+     - KEYCLOAK_BASE_IMAGE=${KEYCLOAK_BASE_IMAGE}
     command: "-b 0.0.0.0 -Djboss.socket.binding.port-offset=1000 --debug"
   keycloak_gatekeeper:
     build:
@@ -49,7 +53,15 @@ services:
   resource_server:
     build:
       context: ./resource-server
-
+#  test_runner:
+#    build:
+#      context: ./test-runner
+#    volumes:
+#     - ./fapi-conformance-suite-configs/:/etc/config/
+#    depends_on:
+#     - load_balancer
+#     - keycloak
+#     - conformance_suite
 networks:
   conformance-suite_default:
     external: true
