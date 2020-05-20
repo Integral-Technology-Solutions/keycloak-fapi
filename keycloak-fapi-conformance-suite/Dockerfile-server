@@ -1,0 +1,12 @@
+FROM maven:3.6.3-openjdk-11-slim as builder
+ADD . .
+RUN mvn dependency:go-offline && mvn package spring-boot:repackage -DskipTests && chmod +x ./target/fapi-test-suite.jar
+
+FROM openjdk:11.0.3-jdk-slim-stretch
+COPY --from=builder /target/fapi-test-suite.jar fapi-test-suite.jar
+RUN apt-get update && apt-get install redir
+ENV BASE_URL https://localhost:8443
+ENV MONGODB_HOST mongodb
+ENV JAR_FILE=fapi-test-suite.jar
+EXPOSE 8080
+EXPOSE 9090

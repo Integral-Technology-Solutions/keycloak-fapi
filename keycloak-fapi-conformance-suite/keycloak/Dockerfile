@@ -1,4 +1,4 @@
-FROM ${KEYCLOAK_BASE_IMAGE}
+FROM ${KEYCLOAK_BASE_IMAGE:-jboss/keycloak:latest}
 
 USER root
 
