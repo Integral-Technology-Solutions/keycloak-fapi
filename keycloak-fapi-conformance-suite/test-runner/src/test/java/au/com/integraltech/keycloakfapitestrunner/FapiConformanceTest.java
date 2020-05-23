@@ -14,11 +14,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -34,13 +32,17 @@ class FapiConformanceTest {
 
 	private static final String BASE_PATH = "https://httpd:8443/api";
 	private static final String PLAN_NAME = "fapi-rw-id2-client-test-plan";
+//	TODO: Variant may be injected via environment variable in command line when docker-compose is called
 	private static final String VARIANT = "{client_auth_type:'private_key_jwt',fapi_profile:'plain_fapi'}";
 
     // Parameters method - Get test plan and filter into list of test params (test plan id, test module name)
-    private static Collection getTestModules() throws IOException {
-		LOGGER.info(String.format("Getting test plan. Plan name: %s, Variant: %s", PLAN_NAME, VARIANT));
+    private static Collection getTestModules() {
+		String configFileName = System.getProperty("configFile");
+		LOGGER.info(String.format("Getting test plan. Plan name: %s, Variant: %s, Config filename: %s",
+				PLAN_NAME, VARIANT, configFileName));
+//		TODO: Need to parameterise (env variable) json config filename!
 		Response planResponse = getTestPlan(PLAN_NAME, VARIANT,
-				new ClassPathResource("/fapi-rw-id2-with-private-key-RS256-PS256.json").getFile());
+				new File(String.format("/json-config/%s", configFileName)));
 		String testPlanId = planResponse.jsonPath().getString("id");
 		List<String> moduleNames = planResponse.jsonPath().getList("modules.testModule");
 		List<Object[]> paramsList = new ArrayList<>();
@@ -119,7 +121,7 @@ class FapiConformanceTest {
 		filterResults(testLogResponse, resultsList, errorList);
 		LOGGER.info(String.format("TEST RESULTS - %s:%n%s", testModuleName, resultsList.toString()));
 		if (errorList.size() > 0) {
-			fail(String.format("Test failed! Failed test steps:%n%s", errorList.toString()));
+			fail(String.format("%s Test failed! Failed test steps:%n%s", testModuleName, errorList.toString()));
 		} else {
 			LOGGER.info(String.format("%s was successful!", testModuleName));
 		}

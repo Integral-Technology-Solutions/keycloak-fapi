@@ -1,4 +1,5 @@
-FROM ${KEYCLOAK_BASE_IMAGE:-jboss/keycloak:latest}
+ARG KEYCLOAK_BASE_IMAGE
+FROM ${KEYCLOAK_BASE_IMAGE}
 
 USER root
 
@@ -7,4 +8,3 @@ ADD --chown=jboss:jboss realm.json /opt/jboss/
 
 ENV KEYCLOAK_IMPORT=/opt/jboss/realm.json
 ENV X509_CA_BUNDLE=/etc/x509/https/client-ca.crt
-

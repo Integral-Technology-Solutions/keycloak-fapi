@@ -1,4 +1,4 @@
-version: '3'
+version: '3.6'
 services:
   load_balancer:
     build:
@@ -24,6 +24,8 @@ services:
   keycloak:
     build:
       context: ./keycloak
+      args:
+        KEYCLOAK_BASE_IMAGE: ${KEYCLOAK_BASE_IMAGE}
     volumes:
      - ./https/server.pem:/etc/x509/https/tls.crt
      - ./https/server-key.pem:/etc/x509/https/tls.key
@@ -33,7 +35,6 @@ services:
     environment:
      - KEYCLOAK_USER=${KEYCLOAK_USER}
      - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
-     - KEYCLOAK_BASE_IMAGE=${KEYCLOAK_BASE_IMAGE:-jboss/keycloak:latest}
     command: "-b 0.0.0.0 -Djboss.socket.binding.port-offset=1000 --debug"
   keycloak_gatekeeper:
     build:
@@ -53,9 +54,11 @@ services:
   test_runner:
     build:
       context: ./test-runner
+    environment:
+     - FAPI_TEST_JSON_CONFIG_FILENAME=${FAPI_TEST_JSON_CONFIG_FILENAME}
     volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
      - mavencache:/root/.m2
-     - ./fapi-conformance-suite-configs/:/etc/config/
     depends_on:
      - load_balancer
      - keycloak
@@ -65,4 +68,3 @@ networks:
     external: true
 volumes:
   mavencache:
-

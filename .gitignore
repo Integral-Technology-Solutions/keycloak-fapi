@@ -34,3 +34,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+### Project-specific ###
+keycloak-fapi-conformance-suite/test-runner/report/

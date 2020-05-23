@@ -11,11 +11,11 @@ The final goal is, of course, to receive official FAPI OpenID Provider Certifica
 * [Docker Compose](https://docs.docker.com/compose/)
 * JDK and [Maven](https://maven.apache.org/)
 
-### Run FAPI Conformance suite server - Automated Approach
+### Run FAPI Conformance suite & Keycloak server - Automated Approach
 
 Edit `hosts` file as per the [Modify your hosts file](#Modify-your-hosts-file) section
 
-Run the following script from the basedir
+Run the following command from the project basedir
 
 ```
 ./run-test-suite.sh <KEYCLOAK_BASE_IMAGE>
@@ -186,7 +186,7 @@ Run `generate-all.sh` script simply to generate self-signed certificates for HTT
 ./generate-all.sh
 ```
 
-Now, you can boot a Keyclaok server with new configurations.
+Now, you can boot a Keycloak server with new configurations.
 
 ```
 docker-compose up --force-recreate

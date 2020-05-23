@@ -16,6 +16,8 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 	</properties>
 
 	<dependencies>
@@ -142,6 +144,15 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+				<configuration>
+					<reportNameSuffix>${timestamp}</reportNameSuffix>
+					<testFailureIgnore>false</testFailureIgnore>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
