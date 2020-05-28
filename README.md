@@ -11,79 +11,58 @@ The final goal is, of course, to receive official FAPI OpenID Provider Certifica
 * [Docker Compose](https://docs.docker.com/compose/)
 * JDK and [Maven](https://maven.apache.org/)
 
-### Run FAPI Conformance suite & Keycloak server - Automated Approach
+### Run FAPI Conformance suite, Keycloak server and Test Runner
 
 Edit `hosts` file as per the [Modify your hosts file](#Modify-your-hosts-file) section
-
-Run the following command from the project basedir
-
-```
-./run-test-suite.sh <KEYCLOAK_BASE_IMAGE>
-```
-
-Observe test logs for test results. If no arg is provided for <KEYCLOAK_BASE_IMAGE>, the base image used for testing will be `jboss/keycloak:latest`
-
-Tests can still be run manually after all containers have started using the OpenID testing UI as per the [Run FAPI Conformance test plan](#Run-FAPI-Conformance-test-plan) section of this document.
-
-To gracefully shut down the test suite, simply hit `CTRL+C`
-
-### Run FAPI Conformance suite server - Manual Browser UI Approach
-
-Clone [FAPI Conformance suite repository](https://gitlab.com/openid/conformance-suite) and move into the directory.
-
-```
-git clone https://gitlab.com/openid/conformance-suite.git
-cd conformance-suite
-```
-
-If you would like to run the server on Docker for Windows, add `volumes` for mongodb and use it in `docker-compose.yml` as follows. 
-
-```
-@@ -3,7 +3,7 @@ services:
-   mongodb:
-     image: mongo
-     volumes:
--     - ./mongo/data:/data/db
-+     - mongodata:/data/db
-   httpd:
-     build:
-       context: ./httpd
-@@ -36,3 +36,7 @@ services:
-       options:
-         max-size: "500k"
-         max-file: "5"
-+
-+volumes:
-+  mongodata:
-+
-```
-
-Then, build the server using Maven.
-
-```
-mvn clean package
-```
-
-Finally, boot all the containers using Docker Compose.
-
-```
-docker-compose up
-```
-
-### Run Local Keycloak server
-
-Clone [jsoss-sig/keycloak-fapi](https://github.com/jsoss-sig/keycloak-fapi) and move into the directory.
-
-```
-git clone https://github.com/jsoss-sig/keycloak-fapi.git
-cd keycloak-fapi
-```
 
 This repository contains default self-signed certificates for HTTPS, client private keys, Keycloak Realm JSON and FAPI Conformance suite config JSONs.
 If you would like to use the configurations as it is, you only need to build and boot all the containers using Docker Compose.
 
+Run the following command from the project basedir
+
 ```
-docker-compose up
+docker-compose up --build
+```
+
+The following options can be set as environment variables before the above command:
+
+* `KEYCLOAK_BASE_IMAGE` (default: jboss/keycloak:latest)
+    * The keycloak image version used in the test suite
+* `FAPI_TEST_JSON_CONFIG_FILENAME` (default: fapi-rw-id2-with-private-key-RS256-PS256.json)
+    * Refers to a JSON config file in 
+    [./keycloak-fapi-conformance-suite/fapi-conformance-suite-configs](./keycloak-fapi-conformance-suite/fapi-conformance-suite-configs) 
+    directory
+* `MAVEN_HOME` (default: ~/.m2)
+    * The path of the host's local maven repo (e.g. /path/to/.m2)
+* `TEST_DELAY` (default: 3m)
+    * The test_runner service needs a 3min delay minimum in order to not start too early. 
+    If you are running this for the first time and the test_runner attempts to start too early, 
+    you may need to set it to 5m or more depending on what is already in your local maven repo.
+* `KEEP_ALIVE` (default: false)
+    * Set this to true to keep all containers running after tests are run. 
+    The OpenID FAPI Conformance test interface will then be reachable at [https://localhost:8443](https://localhost:8443).
+    See instructions in [Run FAPI Conformance test plan](#Run-FAPI-Conformance-test-plan) 
+    section for running the tests manually in your browser.
+
+**Example:**
+```
+KEYCLOAK_BASE_IMAGE=jboss/keycloak:6.0.1 TEST_DELAY=5m docker-compose up --build
+```
+
+Once `test_runner` service has finished and exited, a surefire test report will be copied to the 
+[./keycloak-fapi-conformance-suite/test-runner/report](./keycloak-fapi-conformance-suite/test-runner/report) directory.
+
+If `KEEP_ALIVE` is **not** set to `true`, clean up exited containers after tests are run with the following command:
+```
+docker rm $(docker ps -a -f status=exited -q)
+```
+
+If `KEEP_ALIVE` **is** set to `true`, use the following command to stop and clean up all containers after tests have been run in the browser:
+```
+docker exec -it $(docker ps -f name=conformance_suite --quiet) sh -c "docker-compose stop" && docker-compose down --rmi all --remove-orphans && docker rm $(docker ps -a -f status=exited -q)
+
+OR FOR WINDOWS:
+winpty docker exec -it $(docker ps -f name=conformance_suite --quiet) sh -c "docker-compose stop" && docker-compose down --rmi all --remove-orphans && docker rm $(docker ps -a -f status=exited -q)
 ```
 
 ### Modify your `hosts` file
@@ -98,13 +77,13 @@ To access to Keycloak and Resource server with FQDN, modify your `hosts` file in
 
 1. Open https://localhost:8443
 2. Choose **FAPI-RW-ID2: with private key and mtls holder of key Test Plan** in test plans
-3. Click `JSON` tab and paste content of [fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-RS256-PS256.json](./fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-RS256-PS256.json).
+3. Click `JSON` tab and paste content of [./keycloak-fapi-conformance-suite/fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-RS256-PS256.json](./keycloak-fapi-conformance-suite/fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-RS256-PS256.json).
 4. Click `Start Test Plan` button and follow the instructions. To proceed with the tests, You can authenticate using `john` account with password `john`.
 
 **Note: There is a known issue when using PS256/ES256 as request object signature alg. To proceed with all the test cases, we need to use RS256 instead of them currently.**
 
 
-## How to deploy the servers on the internet
+## How to deploy the servers on the internet TBC
 
 If you would like to deploy on the internet, follow instructions below which use Amazon Linux 2 on Amazaon EC2 as an example.
 

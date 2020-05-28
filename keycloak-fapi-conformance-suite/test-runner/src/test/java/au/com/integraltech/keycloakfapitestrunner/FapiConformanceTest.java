@@ -14,7 +14,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ class FapiConformanceTest {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(FapiConformanceTest.class);
 
-	private static final String BASE_PATH = "https://httpd:8443/api";
+	private static final String BASE_PATH = "https://host.docker.internal:8443/api";
 	private static final String PLAN_NAME = "fapi-rw-id2-client-test-plan";
 //	TODO: Variant may be injected via environment variable in command line when docker-compose is called
 	private static final String VARIANT = "{client_auth_type:'private_key_jwt',fapi_profile:'plain_fapi'}";

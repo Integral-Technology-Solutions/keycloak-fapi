@@ -4,14 +4,13 @@ services:
     privileged: yes
     build:
       context: ./keycloak-fapi-conformance-suite
-      args:
-        OPENID_CONFORMANCE_SUITE_GIT_URL: ${OPENID_CONFORMANCE_SUITE_GIT_URL}
     volumes:
-     - //var/run/docker.sock:/var/run/docker.sock
-     - mavencache:/root/.m2
-     - "${PWD}/keycloak-fapi-conformance-suite/test-runner/report:/test-runner/report"
+     - /var/run/docker.sock:/var/run/docker.sock
+     - ${PWD}/keycloak-fapi-conformance-suite/test-runner/report:/test-runner/report
+     - ${MAVEN_HOME:-~/.m2}:/root/.m2
     environment:
+     - OPENID_CONFORMANCE_SUITE_GIT_URL=${OPENID_CONFORMANCE_SUITE_GIT_URL}
      - KEYCLOAK_BASE_IMAGE=${KEYCLOAK_IMAGE:-jboss/keycloak:latest}
      - FAPI_TEST_JSON_CONFIG_FILENAME=${CONFIG_FILENAME:-fapi-rw-id2-with-private-key-RS256-PS256.json}
-volumes:
-  mavencache:
+     - TEST_DELAY=${TEST_DELAY:-3m}
+     - KEEP_ALIVE=${KEEP_ALIVE:-false}
