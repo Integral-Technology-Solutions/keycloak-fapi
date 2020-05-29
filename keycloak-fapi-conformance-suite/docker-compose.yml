@@ -17,6 +17,7 @@ services:
         aliases:
          - ${KEYCLOAK_FQDN}
          - ${RESOURCE_FQDN}
+         - ${CONFORMANCE_SUITE_FQDN}
   keycloak:
     build:
       context: ./keycloak

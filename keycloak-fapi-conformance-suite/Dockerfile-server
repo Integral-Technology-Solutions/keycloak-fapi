@@ -3,7 +3,7 @@ FROM maven:3.6.3-openjdk-11-slim as builder
 ADD . .
 # the server app requires redir to run
 RUN apt-get update && apt-get install redir
-ENV BASE_URL https://localhost:8443
+ENV BASE_URL https://${CONFORMANCE_SUITE_FQDN}
 ENV MONGODB_HOST mongodb
 EXPOSE 8080
 EXPOSE 9090
