@@ -45,7 +45,6 @@ services:
       context: ./test-runner
     environment:
      - FAPI_TEST_JSON_CONFIG_FILENAME=${FAPI_TEST_JSON_CONFIG_FILENAME}
-     - TEST_DELAY=${TEST_DELAY}
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
      - ~/.m2:/root/.m2

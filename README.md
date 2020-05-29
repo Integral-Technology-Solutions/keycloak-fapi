@@ -34,10 +34,6 @@ The following options can be set as environment variables before the above comma
     directory
 * `MAVEN_HOME` (default: ~/.m2)
     * The path of the host's local maven repo (e.g. /path/to/.m2)
-* `TEST_DELAY` (default: 3m)
-    * The test_runner service needs a 3min delay minimum in order to not start too early. 
-    If you are running this for the first time and the test_runner attempts to start too early, 
-    you may need to set it to 5m or more depending on what is already in your local maven repo.
 * `KEEP_ALIVE` (default: false)
     * Set this to true to keep all containers running after tests are run. 
     The OpenID FAPI Conformance test interface will then be reachable at [https://localhost:8443](https://localhost:8443).
@@ -46,7 +42,7 @@ The following options can be set as environment variables before the above comma
 
 **Example:**
 ```
-KEYCLOAK_BASE_IMAGE=jboss/keycloak:6.0.1 TEST_DELAY=5m docker-compose up --build
+KEYCLOAK_BASE_IMAGE=jboss/keycloak:6.0.1 KEEP_ALIVE=true docker-compose up --build
 ```
 
 Once `test_runner` service has finished and exited, a surefire test report will be copied to the 
