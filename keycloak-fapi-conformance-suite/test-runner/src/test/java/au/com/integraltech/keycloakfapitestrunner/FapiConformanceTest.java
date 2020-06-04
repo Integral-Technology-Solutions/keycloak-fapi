@@ -30,9 +30,9 @@ class FapiConformanceTest {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FapiConformanceTest.class);
 
 	private static final String BASE_PATH = "https://host.docker.internal:8443/api";
-	private static final String PLAN_NAME = "fapi-rw-id2-client-test-plan";
+	private static final String PLAN_NAME = "fapi-rw-id2-test-plan";
 //	TODO: Variant may be injected via environment variable in command line when docker-compose is called
-	private static final String VARIANT = "{client_auth_type:'private_key_jwt',fapi_profile:'plain_fapi'}";
+	private static final String VARIANT = "{client_auth_type:'private_key_jwt',fapi_profile:'plain_fapi',fapi_response_mode:'plain_response'}";
 
     // Parameters method - Get test plan and filter into list of test params (test plan id, test module name)
     private static Collection getTestModules() {

@@ -5,9 +5,6 @@ target/
 .mvn/
 mvnw
 mvnw.cmd
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
 
 ### STS ###
 .apt_generated
@@ -38,3 +35,8 @@ build/
 
 ### Project-specific ###
 keycloak-fapi-conformance-suite/test-runner/report/
+keycloak-fapi-conformance-suite/test-runner/.idea/**
+keycloak-fapi-conformance-suite/test-runner/.mvn
+keycloak-fapi-conformance-suite/test-runner/mvnw
+keycloak-fapi-conformance-suite/test-runner/mvnw.cmd
+keycloak-fapi-conformance-suite/test-runner/*.iml
