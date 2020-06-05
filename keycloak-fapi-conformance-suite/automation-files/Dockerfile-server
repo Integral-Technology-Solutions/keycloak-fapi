@@ -1,0 +1,11 @@
+FROM maven:3.6.3-openjdk-11-slim as builder
+# add all files - could have some exclusions here
+ADD . ./conformance-suite/
+# the server app requires redir to run
+RUN apt-get update && apt-get install -y redir python3 python3-pip
+RUN pip3 install requests
+ENV BASE_URL https://conformance-suite.keycloak-fapi.org
+ENV MONGODB_HOST mongodb
+EXPOSE 8080
+EXPOSE 9090
+CMD [ "sh", "./conformance-suite/server-entrypoint.sh" ]

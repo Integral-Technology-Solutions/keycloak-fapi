@@ -44,8 +44,6 @@ services:
   client_jwks_server:
     build:
       context: ./client_private_keys
-#    volumes:
-#     - ./client_private_keys:/keys
     command: /keys
   test_runner:
     build:
