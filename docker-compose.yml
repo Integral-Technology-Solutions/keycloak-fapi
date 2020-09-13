@@ -12,3 +12,4 @@ services:
      - KEYCLOAK_BASE_IMAGE=${KEYCLOAK_IMAGE:-jboss/keycloak:latest}
      - FAPI_TEST_JSON_CONFIG_FILENAME=${CONFIG_FILENAME:-fapi-rw-id2-with-private-key-PS256-PS256.json}
      - KEEP_ALIVE=${KEEP_ALIVE:-false}
+     - AUTOMATE_TESTS=${AUTOMATE_TESTS:-true}
