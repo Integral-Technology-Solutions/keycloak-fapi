@@ -1,4 +1,4 @@
-FROM alpine:latest
-ADD . .
-RUN apk add --update --upgrade --no-cache maven openjdk11 docker-cli curl
+FROM docker/compose:latest
+ADD test-runner-entrypoint.sh .
+RUN apk add --update --upgrade --no-cache  curl
 CMD [ "sh", "./test-runner-entrypoint.sh" ]

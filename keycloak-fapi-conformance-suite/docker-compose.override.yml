@@ -24,6 +24,7 @@ services:
      - mongodb:mongodb
     depends_on:
      - mongodb
+     - keycloak
     logging:
       # limit logs retained on host
       driver: "json-file"

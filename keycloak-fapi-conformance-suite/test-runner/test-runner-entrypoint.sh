@@ -13,8 +13,4 @@ done
 # Sometimes keycloak is still starting up at this point if no maven dependencies need downloading in server service
 sleep 10
 
-echo 'running tests'
-mvn -DconfigFile=${FAPI_TEST_JSON_CONFIG_FILENAME} test
-
-echo 'copying test report back to host'
-docker cp /target/surefire-reports/. $(docker ps -f name=conformance_suite --quiet):/test-runner/report
+docker exec $(docker ps -f name=default_server --quiet) bash -c "./conformance-suite/run-tests.sh --server-tests-only"

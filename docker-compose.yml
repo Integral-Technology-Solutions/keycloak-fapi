@@ -6,7 +6,6 @@ services:
       context: ./keycloak-fapi-conformance-suite
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
-     - ${PWD}/keycloak-fapi-conformance-suite/test-runner/report:/test-runner/report
      - ${MAVEN_HOME:-~/.m2}:/root/.m2
     environment:
      - OPENID_CONFORMANCE_SUITE_GIT_URL=${OPENID_CONFORMANCE_SUITE_GIT_URL}

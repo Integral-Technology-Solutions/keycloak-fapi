@@ -48,11 +48,10 @@ services:
   test_runner:
     build:
       context: ./test-runner
-    environment:
-     - FAPI_TEST_JSON_CONFIG_FILENAME=${FAPI_TEST_JSON_CONFIG_FILENAME}
+#    environment:
+#     - FAPI_TEST_JSON_CONFIG_FILENAME=${FAPI_TEST_JSON_CONFIG_FILENAME}
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
-     - ~/.m2:/root/.m2
     depends_on:
      - load_balancer
      - keycloak
