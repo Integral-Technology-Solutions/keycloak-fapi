@@ -1,8 +1,9 @@
 #!/bin/sh
 cd conformance-suite
 mvn package -DskipTests
-java -jar target/fapi-test-suite.jar \
+java -Xdebug -Xrunjdwp:transport=dt_socket,address=*:9999,server=y,suspend=n \
+    -jar target/fapi-test-suite.jar \
     -Djava.security.egd=file:/dev/./urandom \
-    --fintechlabs.base_url=https://httpd:8443 \
+    --fintechlabs.base_url=${CONFORMANCE_SERVER} \
     --fintechlabs.devmode=true \
     --fintechlabs.startredir=true

@@ -13,5 +13,5 @@ done
 # Sometimes keycloak is still starting up at this point if no maven dependencies need downloading in server service
 sleep 10
 
-[ "$AUTOMATE_TESTS" == "true" ] &&
+[ $AUTOMATE_TESTS == true ] &&
 docker exec $(docker ps -f name=default_server --quiet) bash -c "./conformance-suite/run-tests.sh --server-tests-only"

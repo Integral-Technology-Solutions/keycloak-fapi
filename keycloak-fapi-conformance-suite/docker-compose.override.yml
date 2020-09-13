@@ -15,11 +15,12 @@ services:
     build:
       context: ./conformance-suite
       args:
-        CONFORMANCE_SUITE_FQDN: ${CONFORMANCE_SUITE_FQDN}
+        CONFORMANCE_SERVER: https://${CONFORMANCE_SUITE_FQDN}
     volumes:
      - ~/.m2:/root/.m2
     environment:
-     - CONFORMANCE_SUITE_FQDN=${CONFORMANCE_SUITE_FQDN}
+     - CONFORMANCE_SERVER=https://${CONFORMANCE_SUITE_FQDN}
+     - CONFORMANCE_DEV_MODE=1
     links:
      - mongodb:mongodb
     depends_on:

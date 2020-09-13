@@ -48,10 +48,9 @@ services:
   test_runner:
     build:
       context: ./test-runner
-      args:
-        AUTOMATE_TESTS: ${AUTOMATE_TESTS}
     environment:
      - FAPI_TEST_JSON_CONFIG_FILENAME=${FAPI_TEST_JSON_CONFIG_FILENAME}
+     - AUTOMATE_TESTS=${AUTOMATE_TESTS}
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
