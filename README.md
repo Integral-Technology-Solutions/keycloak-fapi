@@ -71,7 +71,7 @@ To access to Keycloak and Resource server with FQDN, modify your `hosts` file in
 
 ### Run FAPI Conformance test plan
 
-1. Open https://localhost:8443
+1. Open https://conformance-suite.keycloak-fapi.org
 2. Choose **FAPI-RW-ID2: with private key and mtls holder of key Test Plan** in test plans
 3. Click `JSON` tab and paste content of [./keycloak-fapi-conformance-suite/fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-RS256-PS256.json](./keycloak-fapi-conformance-suite/fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-RS256-PS256.json).
 4. Click `Start Test Plan` button and follow the instructions. To proceed with the tests, You can authenticate using `john` account with password `john`.
