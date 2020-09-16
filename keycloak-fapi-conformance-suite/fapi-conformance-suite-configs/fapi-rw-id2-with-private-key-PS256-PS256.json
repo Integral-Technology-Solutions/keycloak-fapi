@@ -62,11 +62,11 @@
     },
     "browser": [
         {
-            "match": "https://as.keycloak-fapi.org/auth/realms/test/openid-connect/auth*",
+            "match": "https://as.keycloak-fapi.org/auth/realms/test/protocol/openid-connect/auth*",
             "tasks": [
                 {
                     "task": "Initial Login",
-                    "match": "https://as.keycloak-fapi.org/auth/realms/test/openid-connect/auth*",
+                    "match": "https://as.keycloak-fapi.org/auth/realms/test/protocol/openid-connect/auth*",
                     "commands": [
                         [
                             "text",
@@ -97,78 +97,8 @@
                             "accept"
                         ]
                     ]
-                },
-                {
-                    "task": "Verify Complete",
-                    "match": "https://as.keycloak-fapi.org/test/a/keycloak/callback*",
-                    "commands": [
-                        [
-                            "wait",
-                            "id",
-                            "submission_complete",
-                            10
-                        ]
-                    ]
                 }
             ]
         }
-    ],
-    "override": {
-        "fapi-rw-id2": {
-            "browser": [
-                {
-                    "comment": "Login and grant access",
-                    "match": "https://as.keycloak-fapi.org/auth/realms/test/openid-connect/auth*",
-                    "tasks": [
-                        {
-                            "task": "fapi-rw-id2",
-                            "match": "https://as.keycloak-fapi.org/auth/realms/test/openid-connect/auth*",
-                            "commands": [
-                                [
-                                    "text",
-                                    "id",
-                                    "username",
-                                    "john"
-                                ],
-                                [
-                                    "text",
-                                    "id",
-                                    "password",
-                                    "john"
-                                ],
-                                [
-                                    "click",
-                                    "name",
-                                    "login"
-                                ]
-                            ]
-                        },
-                        {
-                            "task": "Authorize Client",
-                            "match": "https://as.keycloak-fapi.org/auth/realms/test/login-actions/required-action*",
-                            "commands": [
-                                [
-                                    "click",
-                                    "name",
-                                    "accept"
-                                ]
-                            ]
-                        },
-                        {
-                            "task": "Verify Complete",
-                            "match": "https://as.keycloak-fapi.org/test/a/keycloak/callback*",
-                            "commands": [
-                                [
-                                    "wait",
-                                    "id",
-                                    "submission_complete",
-                                    10
-                                ]
-                            ]
-                        }
-                    ]
-                }
-            ]
-        }
-    }
+    ]
 }
