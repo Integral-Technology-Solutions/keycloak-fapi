@@ -16,6 +16,7 @@ services:
       context: ./conformance-suite
       args:
         CONFORMANCE_SERVER: https://${CONFORMANCE_SUITE_FQDN}
+    ports: "9999:9999"
     volumes:
      - ~/.m2:/root/.m2
     environment:
