@@ -596,7 +596,120 @@
                     ]
                 }
             ]
+        },
+        "fapi-rw-id2-ensure-different-nonce-inside-and-outside-request-object": {
+            "browser": [
+                {
+                    "comment": "expect an immediate redirect back to the conformance suite with an error",
+                    "match": "https://as.keycloak-fapi.org/auth/realms/test/protocol/openid-connect/auth*",
+                    "tasks": [
+                        {
+                            "task": "Initial login",
+                            "match": "https://as.keycloak-fapi.org/auth/realms/test/protocol/openid-connect/auth*",
+                            "commands": [
+                                [
+                                    "text",
+                                    "id",
+                                    "username",
+                                    "mike"
+                                ],
+                                [
+                                    "text",
+                                    "id",
+                                    "password",
+                                    "mike"
+                                ],
+                                [
+                                    "click",
+                                    "name",
+                                    "login"
+                                ]
+                            ]
+                        },
+                        {
+                            "task": "Authorize Client",
+                            "match": "https://as.keycloak-fapi.org/auth/realms/test/login-actions/required-action*",
+                            "commands": [
+                                [
+                                    "click",
+                                    "name",
+                                    "cancel"
+                                ]
+                            ]
+                        },
+                        {
+                            "task": "Verify Complete",
+                            "match": "https://conformance-suite.keycloak-fapi.org/test/a/keycloak/callback*",
+                            "commands": [
+                                [
+                                    "wait",
+                                    "id",
+                                    "submission_complete",
+                                    10
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+         "fapi-rw-id2-ensure-response-type-code-fails": {
+            "browser": [
+                {
+                    "comment": "expect an immediate redirect back to the conformance suite with an error",
+                    "match": "https://as.keycloak-fapi.org/auth/realms/test/protocol/openid-connect/auth*",
+                    "tasks": [
+                        {
+                            "task": "Initial login",
+                            "match": "https://as.keycloak-fapi.org/auth/realms/test/protocol/openid-connect/auth*",
+                            "commands": [
+                                [
+                                    "text",
+                                    "id",
+                                    "username",
+                                    "mike"
+                                ],
+                                [
+                                    "text",
+                                    "id",
+                                    "password",
+                                    "mike"
+                                ],
+                                [
+                                    "click",
+                                    "name",
+                                    "login"
+                                ]
+                            ]
+                        },
+                        {
+                            "task": "Authorize Client",
+                            "match": "https://as.keycloak-fapi.org/auth/realms/test/login-actions/required-action*",
+                            "commands": [
+                                [
+                                    "click",
+                                    "name",
+                                    "cancel"
+                                ]
+                            ]
+                        },
+                        {
+                            "task": "Verify Complete",
+                            "match": "https://conformance-suite.keycloak-fapi.org/test/a/keycloak/callback*",
+                            "commands": [
+                                [
+                                    "wait",
+                                    "id",
+                                    "submission_complete",
+                                    10
+                                ]
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
+
 
 
 
