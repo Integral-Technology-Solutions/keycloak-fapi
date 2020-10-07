@@ -53,7 +53,45 @@ services:
      - AUTOMATE_TESTS=${AUTOMATE_TESTS}
     volumes:
      - /var/run/docker.sock:/var/run/docker.sock
+     - ./fapi-conformance-suite-configs:/json-config
     depends_on:
      - load_balancer
      - keycloak
      - server
+  mongodb:
+    image: mongo
+    volumes:
+     - mongodata:/data/db
+  httpd:
+    build:
+      context: ./conformance-suite/httpd
+    ports:
+      - "8443:8443"
+    depends_on:
+      - server
+  server:
+    build:
+      context: ./conformance-suite
+      args:
+        CONFORMANCE_SERVER: https://${CONFORMANCE_SUITE_FQDN}
+    ports: 
+      - "9999:9999"
+    volumes:
+      - ~/.m2:/root/.m2
+      # - ./automation-files/run-tests.sh:/conformance-suite/run-tests.sh
+    environment:
+      - CONFORMANCE_SERVER=https://${CONFORMANCE_SUITE_FQDN}
+      - CONFORMANCE_DEV_MODE=1
+    links:
+      - mongodb:mongodb
+    depends_on:
+      - mongodb
+      - keycloak
+    logging:
+      # limit logs retained on host
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "5"
+volumes:
+  mongodata:
