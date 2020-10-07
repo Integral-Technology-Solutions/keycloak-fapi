@@ -1,0 +1,39 @@
+[
+    {
+        "test-name": "fapi-ciba-id1-ensure-authorization-request-with-potentially-bad-binding-message",
+        "variant": "*",
+        "configuration-filename": "authlete-*.json",
+        "current-block": "Resource server endpoint tests",
+        "condition": "ExpectBindingMessageCorrectDisplay",
+        "expected-result": "failure",
+        "comment": "This always failed in automated tests if the server supports binding messages containing emoji etc - it requires a picture of the consumption device"
+    },
+    {
+        "test-name": "fapi-ciba-id1-refresh-token",
+        "variant": {
+                "client_auth_type": "private_key_jwt",
+                "fapi_profile": "plain_fapi",
+                "ciba_mode": "poll",
+                "client_registration": "static_client"
+        },
+        "configuration-filename": "authlete-fapi-ciba-id1-privatekey-poll.json",
+        "current-block": "Second client: Check for refresh token",
+        "condition": "FAPIEnsureServerConfigurationDoesNotSupportRefreshToken",
+        "expected-result": "warning",
+        "comment": "The second client in this configuration does not get issued a refresh token, which is now a warning"
+    },
+    {
+        "test-name": "fapi-ciba-id1-refresh-token",
+        "variant": {
+                "client_auth_type": "private_key_jwt",
+                "fapi_profile": "openbanking_uk",
+                "ciba_mode": "poll",
+                "client_registration": "static_client"
+        },
+        "configuration-filename": "authlete-fapi-ciba-id1-privatekey-poll.json",
+        "current-block": "Second client: Check for refresh token",
+        "condition": "FAPIEnsureServerConfigurationDoesNotSupportRefreshToken",
+        "expected-result": "warning",
+        "comment": "The second client in this configuration does not get issued a refresh token, which is now a warning"
+    }
+]
