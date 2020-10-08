@@ -28,6 +28,10 @@ services:
     environment:
      - KEYCLOAK_USER=${KEYCLOAK_USER}
      - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
+    volumes:
+     - ./https/server.pem:/etc/x509/https/tls.crt
+     - ./https/server-key.pem:/etc/x509/https/tls.key
+     - ./https/client-ca.pem:/etc/x509/https/client-ca.crt
     command: "-b 0.0.0.0 -Djboss.socket.binding.port-offset=1000 --debug"
   keycloak_gatekeeper:
     build:
@@ -35,6 +39,10 @@ services:
     environment:
      - KEYCLOAK_FQDN=${KEYCLOAK_FQDN}
      - KEYCLOAK_REALM=${KEYCLOAK_REALM}
+    volumes:
+     - ./https/server.pem:/etc/x509/https/tls.crt
+     - ./https/server-key.pem:/etc/x509/https/tls.key
+     - ./https/client-ca.pem:/etc/x509/https/client-ca.crt
     depends_on:
      - resource_server
      - keycloak

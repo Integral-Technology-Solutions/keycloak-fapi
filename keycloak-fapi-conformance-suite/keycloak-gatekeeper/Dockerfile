@@ -14,7 +14,5 @@ COPY --from=builder /go/src/github.com/soss-sig/keycloak-gatekeeper/bin/keycloak
 
 ADD config.yml /opt/config.yml
 ADD docker-entrypoint.sh .
-ADD tls.crt /etc/x509/https/
-ADD tls.key /etc/x509/https/
-ADD client-ca.crt /etc/x509/https/
+
 ENTRYPOINT [ "sh", "./docker-entrypoint.sh" ]

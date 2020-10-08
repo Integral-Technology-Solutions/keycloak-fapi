@@ -1,13 +1,7 @@
 #!/bin/sh
-cp ./https/server.pem ./keycloak-gatekeeper/tls.crt
-cp ./https/server-key.pem ./keycloak-gatekeeper/tls.key
-cp ./https/client-ca.pem ./keycloak-gatekeeper/client-ca.crt
-cp ./https/server.pem ./keycloak/tls.crt
-cp ./https/server-key.pem ./keycloak/tls.key
-cp ./https/client-ca.pem ./keycloak/client-ca.crt
-# git clone ${OPENID_CONFORMANCE_SUITE_GIT_URL}
-yes | cp -rf ./automation-files/Dockerfile-server ./conformance-suite/Dockerfile
-yes | cp -rf ./automation-files/server-entrypoint.sh ./conformance-suite/server-entrypoint.sh
+# In case the conformance suite needs to be updated in the future, it will be handy to keep these cp commands
+cp ./automation-files/Dockerfile-server ./conformance-suite/Dockerfile
+cp ./automation-files/server-entrypoint.sh ./conformance-suite/server-entrypoint.sh
 cp ./automation-files/run-tests.sh ./conformance-suite/
 chmod +x ./conformance-suite/run-tests.sh
 cp ./fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-PS256-PS256.json ./conformance-suite/.gitlab-ci/fapi-rw-id2-with-private-key-PS256-PS256.json
