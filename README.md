@@ -18,10 +18,21 @@ Edit `hosts` file as per the [Modify your hosts file](#Modify-your-hosts-file) s
 This repository contains default self-signed certificates for HTTPS, client private keys, Keycloak Realm JSON and FAPI Conformance suite config JSONs.
 If you would like to use the configurations as it is, you only need to build and boot all the containers using Docker Compose.
 
-Run the following command from the project basedir
+Run the following command from the project basedir to start the test suite
 
 ```
 docker-compose up --build
+```
+The OpenID FAPI Conformance test interface will then be reachable at [https://localhost:8443](https://localhost:8443).
+See instructions in [Run FAPI Conformance test plan](#Run-FAPI-Conformance-test-plan) 
+section for running the tests manually in your browser.
+
+
+To run the test suite and have all containers exit upon test completion, instead run the following command from the project basedir.
+Note, the OpenID FAPI conformance test interface will not be available.
+
+```
+docker-compose up --build --exit-code-from test_runner
 ```
 
 The following options can be set as environment variables before the above command:
@@ -36,9 +47,7 @@ The following options can be set as environment variables before the above comma
     * The path of the host's local maven repo (e.g. /path/to/.m2)
 * `KEEP_ALIVE` (default: false)
     * Set this to true to keep all containers running after tests are run. 
-    The OpenID FAPI Conformance test interface will then be reachable at [https://localhost:8443](https://localhost:8443).
-    See instructions in [Run FAPI Conformance test plan](#Run-FAPI-Conformance-test-plan) 
-    section for running the tests manually in your browser.
+
 
 **Example:**
 ```
@@ -167,6 +176,14 @@ Now, you can boot a Keycloak server with new configurations.
 docker-compose up --force-recreate
 ```
 
+** If for some reason the conformance-suite is updated or needs to be replaced, please run the following commands to copy in the required custom files. **
+```
+cp ./automation-files/Dockerfile-server ./conformance-suite/Dockerfile
+cp ./automation-files/server-entrypoint.sh ./conformance-suite/server-entrypoint.sh
+cp ./automation-files/run-tests.sh ./conformance-suite/
+chmod +x ./conformance-suite/run-tests.sh
+cp ./fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-PS256-PS256.json ./conformance-suite/.gitlab-ci/fapi-rw-id2-with-private-key-PS256-PS256.json
+```
 
 ## License
 
