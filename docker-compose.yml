@@ -86,7 +86,7 @@ services:
       - "9999:9999"
     volumes:
       - ~/.m2:/root/.m2
-      # - ./automation-files/run-tests.sh:/conformance-suite/run-tests.sh
+      - ./conformance-suite/report:/conformance-suite/report
     environment:
       - CONFORMANCE_SERVER=https://${CONFORMANCE_SUITE_FQDN}
       - CONFORMANCE_DEV_MODE=1

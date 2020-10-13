@@ -8,9 +8,10 @@ import os
 import re
 import sys
 import time
+import datetime
 import subprocess
 import fnmatch
-
+import pathlib
 import requests
 import json
 import argparse
@@ -321,7 +322,7 @@ def expected_failure(text):
     return color(text, fg_light_cyan=True)
 
 
-def show_plan_results(plan_result, analyzed_result):
+def show_plan_results(plan_result, analyzed_result, report_path):
     plan_id = plan_result['plan_id']
     plan_modules = plan_result['plan_modules']
     test_info = plan_result['test_info']
@@ -339,7 +340,7 @@ def show_plan_results(plan_result, analyzed_result):
     counts_unexpected = detail_plan_result['counts_unexpected']
 
     print('\n\nResults for {} with configuration {}:'.format(plan_result['test_plan'], plan_result['config_file']))
-
+    f = open(os.path.join(report_path, timeStamped('result-report.txt')), 'a')
     for moduledict in plan_modules:
         module_name = get_string_name_for_module_with_variant(moduledict)
         if module_name in ignored_modules:
@@ -379,12 +380,17 @@ def show_plan_results(plan_result, analyzed_result):
               format(module_name, module_id, status_coloured, result_coloured, len(logs),
                      counts['SUCCESS'], counts['FAILURE'], counts['WARNING'], test_time))
 
+        f.write('Test {} {} {} - result {}. {:d} log entries - {:d} SUCCESS {:d} FAILURE, {:d} WARNING, {:.1f} seconds\n\n'.
+              format(module_name, module_id, info['status'], info['result'], len(logs),
+                     counts['SUCCESS'], counts['FAILURE'], counts['WARNING'], test_time))
+
+
         summary_unexpected_failures_test_module(result, test_name, module_id)
 
         successful_conditions += counts['SUCCESS']
         number_of_failures += counts['FAILURE']
         number_of_warnings += counts['WARNING']
-
+    f.close()
     print(
         '\nOverall totals: ran {:d} test modules. '
         'Conditions: {:d} successes, {:d} failures, {:d} warnings. {:.1f} seconds'.
@@ -853,7 +859,19 @@ def parser_args_cli():
 
     return parser.parse_args()
 
+
+def timeStamped(fname, fmt='%Y-%m-%d-%H-%M_{fname}'):
+    return datetime.datetime.now().strftime(fmt).format(fname=fname)
+
+def get_test_report_path(subfolder):
+    parent_dir = "/conformance-suite/report/"
+    path = os.path.join(parent_dir, subfolder)
+    os.mkdir(path)
+    return path
+
 if __name__ == '__main__':
+    report_path = get_test_report_path(datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S'))
+
     requests_session = requests.Session()
 
     dev_mode = 'CONFORMANCE_DEV_MODE' in os.environ
@@ -938,7 +956,7 @@ if __name__ == '__main__':
     failed_plan_results = []
     for result in results:
         plan_result = analyze_plan_results(result, expected_failures_list, expected_skips_list)
-        show_plan_results(result, plan_result)
+        show_plan_results(result, plan_result, report_path)
         plan_did_not_complete = plan_result['plan_did_not_complete']
         if plan_did_not_complete == 'NOT_COMPLETE':
             did_not_complete = True
@@ -959,6 +977,7 @@ if __name__ == '__main__':
     unused_expected_failures = list(filter(is_unused, expected_failures_list))
     if unused_expected_failures:
         print(failure("** Exiting with failure - some expected failures were not found in any test module of the system **"))
+        f = open(os.path.join(report_path, timeStamped('failures-not-found.txt')), 'a')
         for entry in unused_expected_failures:
             entry_invalid_json = {
                 'test-name': entry['test-name'],
@@ -969,11 +988,14 @@ if __name__ == '__main__':
                 'expected-result': entry['expected-result']
             }
             print(json.dumps(entry_invalid_json, indent=4) + "\n", file=sys.__stdout__)
+            f.write(json.dumps(entry_invalid_json, indent=4) + "\n\n")
         failed = True
+        f.close()
 
     unused_expected_skips = list(filter(is_unused, expected_skips_list))
     if unused_expected_skips:
         print(failure("** Exiting with failure - some expected skips were not found in any test module of the system **"))
+        f = open(os.path.join(report_path, timeStamped('expected-skips-not-found.txt')), 'a')
         for entry in unused_expected_skips:
             entry_invalid_json = {
                 'test-name': entry['test-name'],
@@ -981,7 +1003,9 @@ if __name__ == '__main__':
                 'configuration-filename': entry['configuration-filename']
             }
             print(json.dumps(entry_invalid_json, indent=4) + "\n", file=sys.__stdout__)
+            f.write(json.dumps(entry_invalid_json, indent=4) + "\n\n")
         failed = True
+        f.close()
 
     if failed_plan_results:
         summary_unexpected_failures_all_test_plan(failed_plan_results)
@@ -1043,9 +1067,12 @@ if __name__ == '__main__':
 
     if show_untested and len(untested_test_modules) > 0:
         print(failure("** Exiting with failure - not all available modules were tested:"))
+        f = open(os.path.join(report_path, timeStamped('modules-untested.txt')), 'a')
         for m in untested_test_modules:
             print('{}: {}'.format(all_test_modules[m]['profile'], m))
+            f.write('{}: {}\n\n'.format(all_test_modules[m]['profile'], m))
         failed = True
+        f.close()
 
     # wait a bit before exiting so that end of output isn't lost - https://gitlab.com/gitlab-org/gitlab/-/issues/217199
     time.sleep(20)

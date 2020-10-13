@@ -1,0 +1,380 @@
+FAPI-CIBA-ID1: fapi-ciba-id1
+
+FAPI-CIBA-ID1: fapi-ciba-id1-auth-req-id-expired
+
+FAPI-CIBA-ID1: fapi-ciba-id1-discovery-end-point-verification
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-authorization-request-with-binding-message-succeeds
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-authorization-request-with-multiple-hints-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-authorization-request-with-potentially-bad-binding-message
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-client-assertion-signature-algorithm-in-backchannel-authorization-request-is-RS256-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-client-assertion-signature-algorithm-in-token-endpoint-request-is-RS256-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-different-client-id-and-issuer-in-backchannel-authorization-request
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-mtls-holder-of-key-required
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-other-scope-order-succeeds
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-bad-aud-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-bad-iss-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-exp-is-70-minutes-in-future-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-expired-exp-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-missing-aud-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-missing-exp-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-missing-iat-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-missing-iss-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-missing-jti-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-missing-nbf-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-nbf-is-10-minutes-in-future-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-nbf-is-70-minutes-in-past-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-signature-algorithm-is-RS256-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-signature-algorithm-is-bad-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-signature-algorithm-is-none-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-request-object-signed-by-other-client-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-unsigned-backchannel-authorization-request-fails
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-without-client-assertion-in-backchannel-authorization-request
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-without-client-assertion-in-token-endpoint-request
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-wrong-auth-req-id-in-token-endpoint-request
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-wrong-client-id-in-backchannel-authorization-request
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ensure-wrong-client-id-in-token-endpoint-request
+
+FAPI-CIBA-ID1: fapi-ciba-id1-multiple-call-to-token-endpoint
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ping-backchannel-notification-endpoint-response-401
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ping-backchannel-notification-endpoint-response-403
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ping-backchannel-notification-endpoint-response-has-body
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ping-backchannel-notification-endpoint-return-redirect-request
+
+FAPI-CIBA-ID1: fapi-ciba-id1-ping-with-mtls-ciba-notification-endpoint-response-401-and-require-server-does-not-retry
+
+FAPI-CIBA-ID1: fapi-ciba-id1-refresh-token
+
+FAPI-CIBA-ID1: fapi-ciba-id1-user-rejects-authentication
+
+FAPI-R: fapi-r-code-id-token-with-client-secret-jwt
+
+FAPI-R: fapi-r-code-id-token-with-mtls
+
+FAPI-R: fapi-r-code-id-token-with-pkce
+
+FAPI-R: fapi-r-code-id-token-with-private-key
+
+FAPI-R: fapi-r-ensure-redirect-uri-in-authorization-request
+
+FAPI-R: fapi-r-ensure-redirect-uri-is-registered
+
+FAPI-R: fapi-r-reject-plain-pkce
+
+FAPI-R: fapi-r-require-pkce
+
+FAPI-RW-ID2: fapi-rw-id2-client-test
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-iat-is-week-in-past
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-alternate-alg
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-aud
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-chash
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-expired-exp
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-iss
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-missing-aud
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-missing-exp
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-missing-iss
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-missing-nonce
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-missing-shash
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-nonce
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-null-alg
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-openbanking-intent-id
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-secondary-aud
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-shash
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-invalid-signature
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-missing-athash
+
+FAPI-RW-ID2: fapi-rw-id2-client-test-valid-aud-as-array
+
+FAPI-RW-ID2: fapi-rw-id2-ensure-server-handles-non-matching-intent-id
+
+FAPI-RW-ID2: fapi-rw-id2-par-attempt-invalid-http-method
+
+FAPI-RW-ID2: fapi-rw-id2-par-attempt-invalid-redirect_uri
+
+FAPI-RW-ID2: fapi-rw-id2-par-attempt-reuse-request_uri
+
+FAPI-RW-ID2: fapi-rw-id2-par-attempt-to-use-expired-request_uri
+
+FAPI-RW-ID2: fapi-rw-id2-par-attempt-to-use-request_uri-for-different-client
+
+FAPI-RW-ID2: fapi-rw-id2-par-authorization-request-containing-request_uri
+
+FAPI-RW-ID2: fapi-rw-id2-par-authorization-request-containing-request_uri-form-param
+
+FAPI-RW-ID2: fapi-rw-id2-par-pushed-authorization-url-as-audience-in-request-object
+
+FAPI-RW-ID2: fapi-rw-id2-par-test-pushed-authorization-url-as-audience-for-client-JWT-assertion
+
+FAPI-RW-ID2: fapi-rw-id2-test-essential-acr-sca-claim
+
+OIDCC: oidcc-3rd_party-init-login
+
+OIDCC: oidcc-3rd_party-init-login-nohttps
+
+OIDCC: oidcc-backchannel-logout-discovery-endpoint-verification
+
+OIDCC: oidcc-backchannel-rp-initiated-logout
+
+OIDCC: oidcc-claims-essential
+
+OIDCC: oidcc-claims-locales
+
+OIDCC: oidcc-client-test
+
+OIDCC: oidcc-client-test-aggregated-claims
+
+OIDCC: oidcc-client-test-client-secret-basic
+
+OIDCC: oidcc-client-test-discovery-issuer-mismatch
+
+OIDCC: oidcc-client-test-discovery-jwks-uri-keys
+
+OIDCC: oidcc-client-test-discovery-openid-config
+
+OIDCC: oidcc-client-test-discovery-webfinger-acct
+
+OIDCC: oidcc-client-test-discovery-webfinger-url
+
+OIDCC: oidcc-client-test-distributed-claims
+
+OIDCC: oidcc-client-test-dynamic-registration
+
+OIDCC: oidcc-client-test-form-post-error
+
+OIDCC: oidcc-client-test-idtoken-sig-none
+
+OIDCC: oidcc-client-test-idtoken-sig-rs256
+
+OIDCC: oidcc-client-test-invalid-athash
+
+OIDCC: oidcc-client-test-invalid-aud
+
+OIDCC: oidcc-client-test-invalid-chash
+
+OIDCC: oidcc-client-test-invalid-iss
+
+OIDCC: oidcc-client-test-invalid-sig-es256
+
+OIDCC: oidcc-client-test-invalid-sig-hs256
+
+OIDCC: oidcc-client-test-invalid-sig-rs256
+
+OIDCC: oidcc-client-test-kid-absent-multiple-jwks
+
+OIDCC: oidcc-client-test-kid-absent-single-jwks
+
+OIDCC: oidcc-client-test-missing-athash
+
+OIDCC: oidcc-client-test-missing-aud
+
+OIDCC: oidcc-client-test-missing-chash
+
+OIDCC: oidcc-client-test-missing-iat
+
+OIDCC: oidcc-client-test-missing-sub
+
+OIDCC: oidcc-client-test-mtls-endpoint-aliases
+
+OIDCC: oidcc-client-test-nonce-invalid
+
+OIDCC: oidcc-client-test-nonce-unless-code-flow
+
+OIDCC: oidcc-client-test-refresh-token
+
+OIDCC: oidcc-client-test-refresh-token-invalid-issuer
+
+OIDCC: oidcc-client-test-refresh-token-invalid-sub
+
+OIDCC: oidcc-client-test-scope-userinfo-claims
+
+OIDCC: oidcc-client-test-userinfo-bearer-body
+
+OIDCC: oidcc-client-test-userinfo-bearer-header
+
+OIDCC: oidcc-client-test-userinfo-invalid-sub
+
+OIDCC: oidcc-client-test-userinfo-signed
+
+OIDCC: oidcc-codereuse
+
+OIDCC: oidcc-codereuse-30seconds
+
+OIDCC: oidcc-discovery-endpoint-verification
+
+OIDCC: oidcc-display-page
+
+OIDCC: oidcc-display-popup
+
+OIDCC: oidcc-ensure-other-scope-order-succeeds
+
+OIDCC: oidcc-ensure-redirect-uri-in-authorization-request
+
+OIDCC: oidcc-ensure-registered-redirect-uri
+
+OIDCC: oidcc-ensure-request-object-with-redirect-uri
+
+OIDCC: oidcc-ensure-request-with-acr-values-succeeds
+
+OIDCC: oidcc-ensure-request-with-unknown-parameter-succeeds
+
+OIDCC: oidcc-ensure-request-with-valid-pkce-succeeds
+
+OIDCC: oidcc-ensure-request-without-nonce-fails
+
+OIDCC: oidcc-ensure-request-without-nonce-succeeds-for-code-flow
+
+OIDCC: oidcc-frontchannel-logout-discovery-endpoint-verification
+
+OIDCC: oidcc-frontchannel-rp-initiated-logout
+
+OIDCC: oidcc-id-token-hint
+
+OIDCC: oidcc-idtoken-rs256
+
+OIDCC: oidcc-idtoken-signature
+
+OIDCC: oidcc-idtoken-unsigned
+
+OIDCC: oidcc-login-hint
+
+OIDCC: oidcc-max-age-1
+
+OIDCC: oidcc-max-age-10000
+
+OIDCC: oidcc-prompt-login
+
+OIDCC: oidcc-prompt-none-logged-in
+
+OIDCC: oidcc-prompt-none-not-logged-in
+
+OIDCC: oidcc-redirect-uri-query-OK
+
+OIDCC: oidcc-redirect-uri-query-added
+
+OIDCC: oidcc-redirect-uri-query-mismatch
+
+OIDCC: oidcc-redirect-uri-regfrag
+
+OIDCC: oidcc-refresh-token
+
+OIDCC: oidcc-refresh-token-rp-key-rotation
+
+OIDCC: oidcc-registration-jwks-uri
+
+OIDCC: oidcc-registration-logo-uri
+
+OIDCC: oidcc-registration-policy-uri
+
+OIDCC: oidcc-registration-sector-bad
+
+OIDCC: oidcc-registration-sector-uri
+
+OIDCC: oidcc-registration-tos-uri
+
+OIDCC: oidcc-request-uri-signed-rs256
+
+OIDCC: oidcc-request-uri-unsigned
+
+OIDCC: oidcc-response-type-missing
+
+OIDCC: oidcc-rp-initiated-logout
+
+OIDCC: oidcc-rp-initiated-logout-bad-id-token-hint
+
+OIDCC: oidcc-rp-initiated-logout-bad-post-logout-redirect-uri
+
+OIDCC: oidcc-rp-initiated-logout-discovery-endpoint-verification
+
+OIDCC: oidcc-rp-initiated-logout-modified-id-token-hint
+
+OIDCC: oidcc-rp-initiated-logout-no-id-token-hint
+
+OIDCC: oidcc-rp-initiated-logout-no-params
+
+OIDCC: oidcc-rp-initiated-logout-no-post-logout-redirect-uri
+
+OIDCC: oidcc-rp-initiated-logout-no-state
+
+OIDCC: oidcc-rp-initiated-logout-only-state
+
+OIDCC: oidcc-rp-initiated-logout-query-added-to-post-logout-redirect-uri
+
+OIDCC: oidcc-scope-address
+
+OIDCC: oidcc-scope-all
+
+OIDCC: oidcc-scope-email
+
+OIDCC: oidcc-scope-phone
+
+OIDCC: oidcc-scope-profile
+
+OIDCC: oidcc-server
+
+OIDCC: oidcc-server-client-secret-post
+
+OIDCC: oidcc-server-rotate-keys
+
+OIDCC: oidcc-ui-locales
+
+OIDCC: oidcc-unsigned-request-object
+
+OIDCC: oidcc-userinfo-get
+
+OIDCC: oidcc-userinfo-post-body
+
+OIDCC: oidcc-userinfo-post-header
+
+OIDCC: oidcc-userinfo-rs256
+
