@@ -44,9 +44,7 @@ The following options can be set as environment variables before the above comma
     [./keycloak-fapi-conformance-suite/fapi-conformance-suite-configs](./keycloak-fapi-conformance-suite/fapi-conformance-suite-configs) 
     directory
 * `MAVEN_HOME` (default: ~/.m2)
-    * The path of the host's local maven repo (e.g. /path/to/.m2)
-* `KEEP_ALIVE` (default: false)
-    * Set this to true to keep all containers running after tests are run. 
+    * The path of the host's local maven repo (e.g. /path/to/.m2) 
 
 
 **Example:**
@@ -54,15 +52,15 @@ The following options can be set as environment variables before the above comma
 KEYCLOAK_BASE_IMAGE=jboss/keycloak:6.0.1 KEEP_ALIVE=true docker-compose up --build
 ```
 
-Once `test_runner` service has finished and exited, a surefire test report will be copied to the 
-[./keycloak-fapi-conformance-suite/test-runner/report](./keycloak-fapi-conformance-suite/test-runner/report) directory.
+Once `test_runner` service has finished and exited, test reports will be copied to the 
+[./conformance-suite/report](./conformance-suite/report) directory.
 
-If `KEEP_ALIVE` is **not** set to `true`, clean up exited containers after tests are run with the following command:
+Clean up exited containers after tests are run with the following command:
 ```
 docker rm $(docker ps -a -f status=exited -q)
 ```
 
-If `KEEP_ALIVE` **is** set to `true`, use the following command to stop and clean up all containers after tests have been run in the browser:
+If running with with docker-compose up --build, use the following command to stop and clean up all containers after tests have been run in the browser:
 ```
 docker exec -it $(docker ps -f name=conformance_suite --quiet) sh -c "docker-compose stop" && docker-compose down --rmi all --remove-orphans && docker rm $(docker ps -a -f status=exited -q)
 
