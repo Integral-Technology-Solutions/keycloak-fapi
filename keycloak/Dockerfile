@@ -1,6 +1,5 @@
 ARG KEYCLOAK_BASE_IMAGE
 FROM ${KEYCLOAK_BASE_IMAGE}
-
 # For FAPI-RW-8.5-2
 RUN sed -i -e "s/(key-manager=kcKeyManager)/(key-manager=kcKeyManager,protocols=[\"TLSv1.2\"],cipher-suite-filter=\"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256\")/" /opt/jboss/tools/cli/x509-keystore.cli
 
