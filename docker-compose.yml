@@ -1,64 +1,60 @@
-version: '3'
+version: '3.6'
 services:
   load_balancer:
     build:
       context: ./load-balancer
     ports:
-     - "443:443"
+      - "443:443"
     environment:
-     - KEYCLOAK_FQDN=${KEYCLOAK_FQDN}
-     - RESOURCE_FQDN=${RESOURCE_FQDN}
-     - CONFORMANCE_SUITE_FQDN=${CONFORMANCE_SUITE_FQDN}
+      - KEYCLOAK_FQDN=${KEYCLOAK_FQDN}
+      - RESOURCE_FQDN=${RESOURCE_FQDN}
+      - CONFORMANCE_SUITE_FQDN=${CONFORMANCE_SUITE_FQDN}
     depends_on:
-     - keycloak
-     - keycloak_gatekeeper
+      - keycloak
+      - keycloak_gatekeeper
     networks:
       default:
         aliases:
-         - ${KEYCLOAK_FQDN}
-         - ${RESOURCE_FQDN}
-      conformance-suite_default:
-        aliases:
-         - ${KEYCLOAK_FQDN}
-         - ${RESOURCE_FQDN}
+          - ${KEYCLOAK_FQDN}
+          - ${RESOURCE_FQDN}
+          - ${CONFORMANCE_SUITE_FQDN}
   keycloak:
     build:
       context: ./keycloak
-    volumes:
-     - ./https/server.pem:/etc/x509/https/tls.crt
-     - ./https/server-key.pem:/etc/x509/https/tls.key
-     - ./https/client-ca.pem:/etc/x509/https/client-ca.crt
+      args:
+        KEYCLOAK_BASE_IMAGE: ${KEYCLOAK_BASE_IMAGE}
     ports:
-     - "8787:8787"
+      - "8787:8787"
     environment:
-     - KEYCLOAK_USER=${KEYCLOAK_USER}
-     - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
+      - KEYCLOAK_USER=${KEYCLOAK_USER}
+      - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
     command: "-b 0.0.0.0 -Djboss.socket.binding.port-offset=1000 --debug"
   keycloak_gatekeeper:
     build:
       context: ./keycloak-gatekeeper
-    volumes:
-     - ./https/server.pem:/etc/x509/https/tls.crt
-     - ./https/server-key.pem:/etc/x509/https/tls.key
-     - ./https/client-ca.pem:/etc/x509/https/client-ca.crt
     environment:
-     - KEYCLOAK_FQDN=${KEYCLOAK_FQDN}
-     - KEYCLOAK_REALM=${KEYCLOAK_REALM}
-     - PROXY_TOKEN_INTROSPECTION_URL=https://${KEYCLOAK_FQDN}/auth/realms/${KEYCLOAK_REALM}/protocol/openid-connect/token/introspect
-     - PROXY_CLIENT_SECRET=2ef90464-b0fc-4e06-965d-19ef671a3e22
+      - KEYCLOAK_FQDN=${KEYCLOAK_FQDN}
+      - KEYCLOAK_REALM=${KEYCLOAK_REALM}
+      - PROXY_TOKEN_INTROSPECTION_URL=https://${KEYCLOAK_FQDN}/auth/realms/${KEYCLOAK_REALM}/protocol/openid-connect/token/introspect
+      - PROXY_CLIENT_SECRET=2ef90464-b0fc-4e06-965d-19ef671a3e22
     depends_on:
-     - resource_server
+      - resource_server
   resource_server:
     build:
       context: ./resource-server
   client_jwks_server:
     build:
       context: ./client_private_keys
-    volumes:
-     - ./client_private_keys:/keys
     command: /keys
-
-networks:
-  conformance-suite_default:
-    external: true
-
+  test_runner:
+    build:
+      context: ./test-runner
+    environment:
+      - FAPI_TEST_JSON_CONFIG_FILENAME=${FAPI_TEST_JSON_CONFIG_FILENAME}
+      - AUTOMATE_TESTS=${AUTOMATE_TESTS}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - load_balancer
+      - keycloak
+      - server

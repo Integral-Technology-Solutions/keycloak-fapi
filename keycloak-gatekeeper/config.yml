@@ -12,7 +12,7 @@ enable-default-deny: true
 no-redirects: true
 enable-session-cookies: false
 skip-openid-provider-tls-verify: true
-openid-provider-timeout: 180s
+openid-provider-timeout: 300s
 enable-token-verification-by-token-introspection: true
 enable-fapi-interaction-id: true
 enable-logging: true

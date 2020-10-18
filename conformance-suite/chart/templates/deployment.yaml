@@ -1,0 +1,92 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "trackableappname" . }}
+  labels:
+    app: {{ template "appname" . }}
+    track: "{{ .Values.application.track }}"
+    tier: "{{ .Values.application.tier }}"
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+  annotations:
+    app.gitlab.com/app: "{{ .Values.application.path_slug }}"
+    app.gitlab.com/env: "{{ .Values.application.env_slug }}"
+spec:
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "appname" . }}
+        track: "{{ .Values.application.track }}"
+        tier: "{{ .Values.application.tier }}"
+      annotations:
+        app.gitlab.com/app: "{{ .Values.application.path_slug }}"
+        app.gitlab.com/env: "{{ .Values.application.env_slug }}"
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+        - name: BASE_URL
+          value: {{ .Values.service.url | quote }}
+        - name: MONGODB_HOST
+          value: {{ template "appname" . }}-mongodb
+        - name: JAVA_EXTRA_ARGS
+          value: {{ .Values.javaArgs | quote }}
+        - name: JWKS
+          valueFrom:
+            secretKeyRef:
+              name: jwks-{{ template "appname" . }}
+              key: jwks
+              optional: true
+        - name: SIGNING_KEY
+          valueFrom:
+            secretKeyRef:
+              name: jwks-{{ template "appname" . }}
+              key: signingKey
+              optional: true
+        - name: OIDC_GOOGLE_CLIENTID
+          valueFrom:
+            secretKeyRef:
+              name: oidc-google-credentials
+              key: clientid
+        - name: OIDC_GOOGLE_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: oidc-google-credentials
+              key: secret
+        - name: OIDC_GITLAB_CLIENTID
+          valueFrom:
+            secretKeyRef:
+              name: oidc-gitlab-credentials
+              key: clientid
+        - name: OIDC_GITLAB_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: oidc-gitlab-credentials
+              key: secret
+        ports:
+        - name: "{{ .Values.service.name }}"
+          containerPort: {{ .Values.service.internalPort }}
+        livenessProbe:
+          tcpSocket:
+            port: {{ .Values.service.internalPort }}
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 15
+        readinessProbe:
+          tcpSocket:
+            port: {{ .Values.service.internalPort }}
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 3
+        resources:
+{{ toYaml .Values.resources | indent 12 }}
+      {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+      {{- end }}
+      {{- if .Values.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+      {{- end }}
