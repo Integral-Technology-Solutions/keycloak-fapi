@@ -174,7 +174,7 @@ Now, you can boot a Keycloak server with new configurations.
 docker-compose up --force-recreate
 ```
 
-**Custom files in the conformance suite
+**Custom files in the conformance suite**
 - /conformance-suite/run-tests.sh
 - /conformance-suite/Dockerfile
 - /conformance-suite/server-entrypoint.sh

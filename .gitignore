@@ -40,4 +40,4 @@ keycloak-fapi-conformance-suite/test-runner/.mvn
 keycloak-fapi-conformance-suite/test-runner/mvnw
 keycloak-fapi-conformance-suite/test-runner/mvnw.cmd
 keycloak-fapi-conformance-suite/test-runner/*.iml
-conformance-suite/report
+conformance-suite/report/
