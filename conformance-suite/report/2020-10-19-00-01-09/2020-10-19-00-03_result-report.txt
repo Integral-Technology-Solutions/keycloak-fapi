@@ -1,0 +1,74 @@
+Test fapi-rw-id2-discovery-end-point-verification XeWMTdGJmwStHsk FINISHED - result FAILED. 26 log entries - 19 SUCCESS 1 FAILURE, 0 WARNING, 1.2 seconds
+
+Test fapi-rw-id2 RiBFfC87JmpK8Bb INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 7.2 seconds
+
+Test fapi-rw-id2-user-rejects-authentication xXUK5hzb5ZK01PA FINISHED - result PASSED. 139 log entries - 80 SUCCESS 0 FAILURE, 0 WARNING, 10.2 seconds
+
+Test fapi-rw-id2-ensure-request-object-with-multiple-aud-succeeds E1LnVyqmiSy6sqG INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-authorization-request-without-state-success BJzEN1u1ugsoYN0 INTERRUPTED - result FAILED. 73 log entries - 44 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-valid-pkce-succeeds 7iOOsoCL8bGIOBh INTERRUPTED - result FAILED. 77 log entries - 47 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-other-scope-order-succeeds 69mM0OM2F8UJHBZ INTERRUPTED - result FAILED. 58 log entries - 39 SUCCESS 1 FAILURE, 0 WARNING, 1.1 seconds
+
+Test fapi-rw-id2-ensure-response-mode-query NesrCTH7tW22fFX FINISHED - result PASSED. 84 log entries - 55 SUCCESS 0 FAILURE, 0 WARNING, 2.1 seconds
+
+Test fapi-rw-id2-ensure-different-nonce-inside-and-outside-request-object 8yURAjrPkdBu4yL FINISHED - result FAILED. 92 log entries - 54 SUCCESS 1 FAILURE, 0 WARNING, 5.1 seconds
+
+Test fapi-rw-id2-ensure-registered-redirect-uri IFMOaI4FoEvW6nz FINISHED - result REVIEW. 73 log entries - 47 SUCCESS 0 FAILURE, 0 WARNING, 4.1 seconds
+
+Test fapi-rw-id2-ensure-request-object-with-long-nonce 8fk4PDmsVcS9pCb INTERRUPTED - result FAILED. 75 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-request-object-with-long-state j5rLb0WP37io2eb INTERRUPTED - result FAILED. 75 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-request-object-without-exp-fails rM4C6Uot3LxXrfT FINISHED - result PASSED. 91 log entries - 53 SUCCESS 0 FAILURE, 0 WARNING, 5.1 seconds
+
+Test fapi-rw-id2-ensure-request-object-without-scope-fails We2mf9DzEk5rHx6 FINISHED - result PASSED. 92 log entries - 55 SUCCESS 0 FAILURE, 0 WARNING, 5.1 seconds
+
+Test fapi-rw-id2-state-only-outside-request-object-not-used EHHFnJIjz3wyfN4 FINISHED - result PASSED. 92 log entries - 54 SUCCESS 0 FAILURE, 0 WARNING, 5.1 seconds
+
+Test fapi-rw-id2-ensure-request-object-without-nonce-fails tTNPcuA95KkZqwd FINISHED - result FAILED. 92 log entries - 53 SUCCESS 1 FAILURE, 0 WARNING, 5.1 seconds
+
+Test fapi-rw-id2-ensure-request-object-without-redirect-uri-fails hs15XoC63XUQ1Tu FINISHED - result FAILED. 92 log entries - 54 SUCCESS 1 FAILURE, 0 WARNING, 5.1 seconds
+
+Test fapi-rw-id2-ensure-expired-request-object-fails l1mauC3Hs4dThs5 FINISHED - result FAILED. 91 log entries - 53 SUCCESS 1 FAILURE, 0 WARNING, 5.1 seconds
+
+Test fapi-rw-id2-ensure-request-object-with-bad-aud-fails Vteyd1ZNKfPDIKu FINISHED - result FAILED. 91 log entries - 53 SUCCESS 1 FAILURE, 0 WARNING, 5.2 seconds
+
+Test fapi-rw-id2-ensure-signed-request-object-with-RS256-fails AZhZyDaf2TRDzsn FINISHED - result REVIEW. 72 log entries - 46 SUCCESS 0 FAILURE, 0 WARNING, 4.1 seconds
+
+Test fapi-rw-id2-ensure-request-object-signature-algorithm-is-not-none ujWyN9BusqEywsf INTERRUPTED - result FAILED. 71 log entries - 46 SUCCESS 2 FAILURE, 0 WARNING, 2.1 seconds
+
+Test fapi-rw-id2-ensure-request-object-with-invalid-signature-fails WOvE7OaQgVnOdOm INTERRUPTED - result FAILED. 72 log entries - 47 SUCCESS 2 FAILURE, 0 WARNING, 1.0 seconds
+
+Test fapi-rw-id2-ensure-matching-key-in-authorization-request 5tGdF7ndzRioQXd FINISHED - result FAILED. 92 log entries - 53 SUCCESS 1 FAILURE, 0 WARNING, 5.1 seconds
+
+Test fapi-rw-id2-ensure-authorization-request-without-request-object-fails DBrfzl3vbKbpP5q FINISHED - result REVIEW. 66 log entries - 40 SUCCESS 0 FAILURE, 0 WARNING, 4.1 seconds
+
+Test fapi-rw-id2-ensure-redirect-uri-in-authorization-request T8aaZs2q1q9pmeR FINISHED - result REVIEW. 72 log entries - 46 SUCCESS 0 FAILURE, 0 WARNING, 4.1 seconds
+
+Test fapi-rw-id2-ensure-response-type-code-fails GXtCE8sl3nHJrms FINISHED - result FAILED. 93 log entries - 55 SUCCESS 1 FAILURE, 0 WARNING, 5.1 seconds
+
+Test fapi-rw-id2-ensure-client-id-in-token-endpoint mvhNlXwVebd5YLU INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-mtls-holder-of-key-required ftRkjhVAkZL26uv INTERRUPTED - result FAILED. 96 log entries - 61 SUCCESS 3 FAILURE, 0 WARNING, 4.3 seconds
+
+Test fapi-rw-id2-ensure-authorization-code-is-bound-to-client LH4NplOpXPankHc INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-signed-client-assertion-with-RS256-fails kSs7aTRYlhkmMy9 INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-client-assertion-in-token-endpoint 8BwZpguXhs1BqsT INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-client-assertion-with-exp-is-5-minutes-in-past-fails ZdRVYdF2dnsiufl INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-client-assertion-with-wrong-aud-fails aobZYeO7RTYJS4i INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-ensure-client-assertion-with-no-sub-fails KOPm87TGl806pWj INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-refresh-token I62bNmZBUllY6St INTERRUPTED - result FAILED. 75 log entries - 47 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+
+Test fapi-rw-id2-attempt-reuse-authorisation-code-after-30seconds RDsJBUJ4fkGZQdo INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.2 seconds
+
+Test fapi-rw-id2-attempt-reuse-authorisation-code-after-one-second mUbATNbIWSCfmfZ INTERRUPTED - result FAILED. 74 log entries - 46 SUCCESS 3 FAILURE, 0 WARNING, 3.1 seconds
+

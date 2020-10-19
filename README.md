@@ -174,14 +174,10 @@ Now, you can boot a Keycloak server with new configurations.
 docker-compose up --force-recreate
 ```
 
-** If for some reason the conformance-suite is updated or needs to be replaced, please run the following commands to copy in the required custom files. **
-```
-cp ./automation-files/Dockerfile-server ./conformance-suite/Dockerfile
-cp ./automation-files/server-entrypoint.sh ./conformance-suite/server-entrypoint.sh
-cp ./automation-files/run-tests.sh ./conformance-suite/
-chmod +x ./conformance-suite/run-tests.sh
-cp ./fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-PS256-PS256.json ./conformance-suite/.gitlab-ci/fapi-rw-id2-with-private-key-PS256-PS256.json
-```
+**Custom files in the conformance suite
+- /conformance-suite/run-tests.sh
+- /conformance-suite/Dockerfile
+- /conformance-suite/server-entrypoint.sh
 
 ## License
 
