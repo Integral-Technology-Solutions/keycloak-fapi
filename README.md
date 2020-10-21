@@ -175,6 +175,7 @@ docker-compose up --force-recreate
 ```
 
 **Custom files in the conformance suite**
+
 The conformance-suite folder within this repository is a local copy of OpenIds FAPI conformance suite (https://gitlab.com/openid/conformance-suite/).
 Incorporating the suite and running the conformance tests within docker-compose requires adding custom files into the base OpenId FAPI conformance suite.
 Below is a list of the custom files currently used by the base conformance-suite.
