@@ -174,10 +174,23 @@ Now, you can boot a Keycloak server with new configurations.
 docker-compose up --force-recreate
 ```
 
-**Custom files in the conformance suite
-- /conformance-suite/run-tests.sh
-- /conformance-suite/Dockerfile
-- /conformance-suite/server-entrypoint.sh
+**Custom files in the conformance suite**
+The conformance-suite folder within this repository is a local copy of OpenIds FAPI conformance suite (https://gitlab.com/openid/conformance-suite/).
+Incorporating the suite and running the conformance tests within docker-compose requires adding custom files into the base OpenId FAPI conformance suite.
+Below is a list of the custom files currently used by the base conformance-suite.
+* /conformance-suite/run-tests.sh
+  * Script for running / creating test plans
+* /conformance-suite/Dockerfile
+  * Dockerfile which installs python dependencies, exposes ports and kicks off building the project via the server-entrypoint script 
+* /conformance-suite/server-entrypoint.sh
+  * Script for building the project with maven
+* /conformance-suite/scripts/run-test-plan.py
+  * Existing file within the base conformance-suite repo that has been slightly modified to output test results to the file system.
+
+
+**Running different test plans**
+
+To create custom test plans, add code into /conformance-suite/run-tests.sh as per commented out examples.
 
 ## License
 
