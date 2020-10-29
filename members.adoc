@@ -1,0 +1,38 @@
+Below is the list of FAPI SIG members
+
+If you think some information is outdated, either provide a pull request or send an email to the `keycloak-dev` mailing list.
+
+[cols=2*,options="header"]
+|===
+|Company
+|Names
+
+|Adorsys
+|https://github.com/andriimurashkin[Andrii Murashkin], https://github.com/DmitryMishchuk[Dmytro Mishchuk], Dmytro Storozhyk, https://github.com/francis-pouatcha[Francis Pouatcha], https://github.com/HryhoriiHevorkian[Hryhorii], https://github.com/valb3r[Valentyn Berezin]
+
+|Backbase
+|Etienne Koekemoer, Gareth Filer, Jonathan Meyler
+
+|BANFICO
+|https://github.com/arunganesh-a[Arun Ganesh], https://github.com/kannan-ra[Kannan Rasappan], https://github.com/pritish-nitb[Pritish Joshi]
+
+|Hitachi
+|Yuichi Nakamura, https://github.com/tnorimat[Takashi Norimatsu]
+
+|Independent
+|Vinod, Vishnu Prakash
+
+|Integral Technology Solutions
+|https://github.com/brothwellIntegral[Brendan Rothwell], Cameron Locke
+
+|Nomura Research Institute
+|https://github.com/wadahiro[Hiroyuki Wada]
+
+|Red Hat
+|https://github.com/akoserwal[Abhishek Koserwal], Boleslaw Dawidowicz, https://github.com/mposolda[Marek Posolda], https://github.com/stianst[Stian Thorgersen]
+
+|Temenos
+|James Holland 
+
+
+|===

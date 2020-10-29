@@ -116,9 +116,16 @@ To access to Keycloak and Resource server with FQDN, modify your `hosts` file in
 ### Run FAPI Conformance test plan
 
 1. Open https://conformance-suite.keycloak-fapi.org
-2. Choose **FAPI-RW-ID2 (and OpenBankingUK / CDR): Authorization server test (latest version)** in test plans
-3. Click `JSON` tab and paste content of [./keycloak-fapi-conformance-suite/fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-PS256-PS256.json](./keycloak-fapi-conformance-suite/fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-PS256-PS256.json).
-4. Click `Start Test Plan` button and follow the instructions.
+2. Click `Create a new test plan` button.
+3. Choose `FAPI-RW-ID2 (and OpenBankingUK): Authorization server test (latest version)` as Test Plan.
+4. Choose `Client Authentication Type` you want to test.
+5. Choose `plain_fapi` as FAPI Profile.
+6. Choose `plain_response` as FAPI Response Mode.
+7. Click `JSON` tab and paste content of the configuration.
+  * If you want to use private_key_jwt client authentication, use [fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-PS256-PS256.json](./fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-PS256-PS256.json) or [fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-ES256-ES256.json](./fapi-conformance-suite-configs/fapi-rw-id2-with-private-key-ES256-ES256.json).
+  * If you want to use mtls client authentication, use [fapi-conformance-suite-configs/fapi-rw-id2-with-mtls-PS256-PS256.json](./fapi-conformance-suite-configs/fapi-rw-id2-with-mtls-PS256-PS256.json) or [fapi-conformance-suite-configs/fapi-rw-id2-with-mtls-ES256-ES256.json](./fapi-conformance-suite-configs/fapi-rw-id2-with-mtls-ES256-ES256.json).
+8. Click `Create Test Plan` button and follow the instructions. To proceed with the tests, You can authenticate using `john` account with password `john`. When rejecting authentication scenario, you can use `mike` account with password `mike`. In this case, you need to click `No` button to cancel the authentication in the consent screen.
+
 
 ## For Developers
 
@@ -136,7 +143,25 @@ Now, you can boot a Keycloak server with new configurations.
 docker-compose up --force-recreate
 ```
 
-**Custom files in the conformance suite**
+## Run FAPI Conformance test against local built keycloak
+
+If you would like to run FAPI Conformance test against local built keycloak, modify `docker-compose.yml` as follows.
+
+```
+@@ -28,6 +28,7 @@ services:
+      - ./https/server.pem:/etc/x509/https/tls.crt
+      - ./https/server-key.pem:/etc/x509/https/tls.key
+      - ./https/client-ca.pem:/etc/x509/https/client-ca.crt
++     - <path to locally built keycloak>:/opt/jboss/keycloak
+     ports:
+      - "8787:8787"
+     environment:
+```
+
+It overrides the keycloak of the base image with the one built on the local machine.
+
+
+##Custom files in the conformance suite
 
 The conformance-suite folder within this repository is a local copy of OpenIds FAPI conformance suite (https://gitlab.com/openid/conformance-suite/).
 Incorporating the suite and running the conformance tests within docker-compose requires adding custom files into the base OpenId FAPI conformance suite.
@@ -159,3 +184,4 @@ JSON configuration files for test plans should be created in /conformance-suite/
 ## License
 
 * [Apache License, Version 2.0](./LICENSE)
+
