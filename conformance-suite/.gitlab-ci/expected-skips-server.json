@@ -6,11 +6,11 @@
                 "fapi_profile": "openbanking_uk",
                 "fapi_response_mode": "plain_response"
         },
-        "configuration-filename": "authlete-fapi-rw-id2-ob-privatekey.json"
+        "configuration-filename": "*.json"
     },
     {
         "test-name": "oidcc-idtoken-unsigned",
         "variant": "*",
-        "configuration-filename": "authlete-oidcc-dcr.json"
+        "configuration-filename": "*.json"
     }
 ]

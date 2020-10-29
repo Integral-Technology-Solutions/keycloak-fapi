@@ -4,7 +4,7 @@
         "variant": {
                 "fapi_profile": "openbanking_uk"
         },
-        "configuration-filename": "authlete-*.json",
+        "configuration-filename": "*.json",
         "current-block": "",
         "condition": "CheckJwksUriIsHostedOnOpenBankingDirectory",
         "expected-result": "warning",
@@ -13,7 +13,7 @@
     {
         "test-name": "fapi-rw-id2-attempt-reuse-authorisation-code-after-one-second",
         "variant": "*",
-        "configuration-filename": "authlete*.json",
+        "configuration-filename": "*.json",
         "current-block": "Attempting reuse of authorisation code & testing if access token is revoked",
         "condition": "CallProtectedResourceWithBearerTokenExpectingError",
         "expected-result": "warning",
@@ -22,7 +22,7 @@
     {
         "test-name": "fapi-rw-id2-attempt-reuse-authorisation-code-after-30seconds",
         "variant": "*",
-        "configuration-filename": "authlete*.json",
+        "configuration-filename": "*.json",
         "current-block": "Attempting reuse of authorisation code & testing if access token is revoked",
         "condition": "CallProtectedResourceWithBearerTokenExpectingError",
         "expected-result": "warning",
@@ -33,7 +33,7 @@
         "variant": {
                 "fapi_profile": "openbanking_uk"
         },
-        "configuration-filename": "authlete-*.json",
+        "configuration-filename": "*.json",
         "current-block": "Verify authorization endpoint response",
         "condition": "EnsureErrorFromAuthorizationEndpointResponse",
         "expected-result": "failure",
@@ -44,7 +44,7 @@
         "variant": {
             "fapi_profile": "openbanking_uk"
         },
-        "configuration-filename": "authlete-*.json",
+        "configuration-filename": "*.json",
         "current-block": "Verify authorization endpoint response",
         "condition": "EnsureInvalidRequestInvalidRequestObjectInvalidRequestUriOrAccessDeniedError",
         "expected-result": "failure",
@@ -55,7 +55,7 @@
         "variant": {
             "fapi_profile": "openbanking_uk"
         },
-        "configuration-filename": "authlete-*.json",
+        "configuration-filename": "*.json",
         "current-block": "Verify authorization endpoint response",
         "condition": "CheckForUnexpectedParametersInErrorResponseFromAuthorizationEndpoint",
         "expected-result": "warning",
@@ -77,7 +77,7 @@
     {
         "test-name": "oidcc-codereuse-30seconds",
         "variant": "*",
-        "configuration-filename": "authlete-*.json",
+        "configuration-filename": "*.json",
         "current-block": "Testing if access token was revoked after the authorization code was reused",
         "condition": "CallProtectedResourceWithBearerTokenExpectingError",
         "expected-result": "warning",
@@ -86,7 +86,7 @@
     {
         "test-name": "oidcc-server-rotate-keys",
         "variant": "*",
-        "configuration-filename": "authlete-*.json",
+        "configuration-filename": "*.json",
         "current-block": "",
         "condition": "VerifyNewJwksHasNewSigningKey",
         "expected-result": "failure",
@@ -95,7 +95,7 @@
     {
         "test-name": "oidcc-userinfo-post-body",
         "variant": "*",
-        "configuration-filename": "authlete-*.json",
+        "configuration-filename": "*.json",
         "current-block": "",
         "condition": "UserInfoEndpointWithAccessTokenInBodyNotSupported",
         "expected-result": "warning",
