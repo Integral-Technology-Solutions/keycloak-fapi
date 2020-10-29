@@ -423,7 +423,7 @@
                 "https://review-app-dev-branch-9.certification.openid.net/test/a/keycloak/callback?dummy1=lorem&dummy2=ipsum"
             ],
             "attributes": {
-                
+
                 "request.object.signature.alg": "PS256",
                 "jwks.url": "http://client_jwks_server:3000/",
                 "jwt.credential.kid": "client1-PS256",
@@ -510,7 +510,7 @@
                 "https://review-app-dev-branch-9.certification.openid.net/test/a/keycloak/callback?dummy1=lorem&dummy2=ipsum"
             ],
             "attributes": {
-                
+
                 "request.object.signature.alg": "PS256",
                 "jwks.url": "http://client_jwks_server:3000/",
                 "jwt.credential.kid": "client2-PS256",
@@ -597,7 +597,7 @@
                 "https://review-app-dev-branch-9.certification.openid.net/test/a/keycloak/callback?dummy1=lorem&dummy2=ipsum"
             ],
             "attributes": {
-                
+
                 "request.object.signature.alg": "ES256",
                 "jwks.url": "http://client_jwks_server:3000/",
                 "jwt.credential.kid": "client1-ES256",
@@ -684,7 +684,7 @@
                 "https://review-app-dev-branch-9.certification.openid.net/test/a/keycloak/callback?dummy1=lorem&dummy2=ipsum"
             ],
             "attributes": {
-                
+
                 "request.object.signature.alg": "ES256",
                 "jwks.url": "http://client_jwks_server:3000/",
                 "jwt.credential.kid": "client2-ES256",
@@ -945,7 +945,7 @@
                 "https://review-app-dev-branch-9.certification.openid.net/test/a/keycloak/callback?dummy1=lorem&dummy2=ipsum"
             ],
             "attributes": {
-                
+
                 "request.object.signature.alg": "RS256",
                 "jwks.url": "http://client_jwks_server:3000/",
                 "jwt.credential.kid": "client1-RS256",
@@ -1032,7 +1032,7 @@
                 "https://review-app-dev-branch-9.certification.openid.net/test/a/keycloak/callback?dummy1=lorem&dummy2=ipsum"
             ],
             "attributes": {
-                
+
                 "request.object.signature.alg": "RS256",
                 "jwks.url": "http://client_jwks_server:3000/",
                 "jwt.credential.kid": "client2-RS256",
