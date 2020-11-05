@@ -84,6 +84,9 @@ The following options can be set as environment variables before the above comma
 
 * `KEYCLOAK_BASE_IMAGE` (default: jboss/keycloak:latest)
     * The keycloak image version used in the test suite
+* `KEYCLOAK_REALM_IMPORT_FILENAME` (default: realm.json)
+    * The keycloak realm import filename. Set this to `realm.json` if you are running the tests
+    against a local build of keycloak.
 * `AUTOMATE_TESTS` (default: true)
     * Set to false to stop conformance-suite tests automatically running
 * `MVN_HOME` (default: ~/.m2)
@@ -159,6 +162,12 @@ If you would like to run FAPI Conformance test against local built keycloak, mod
 ```
 
 It overrides the keycloak of the base image with the one built on the local machine.
+
+Then run the FAPI Conformance Suite with KEYCLOAK_REALM_IMPORT_FILENAME env var:
+
+```
+KEYCLOAK_REALM_IMPORT_FILENAME=realm-local.json docker-compose up --build
+```
 
 
 ##Custom files in the conformance suite

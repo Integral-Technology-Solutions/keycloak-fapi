@@ -67,6 +67,7 @@
                 {
                     "task": "Initial Login",
                     "match": "https://as.keycloak-fapi.org/auth/realms/test/protocol/openid-connect/auth*",
+                    "optional": true,
                     "commands": [
                         [
                             "text",
@@ -112,6 +113,7 @@
                         {
                             "task": "Initial login",
                             "match": "https://as.keycloak-fapi.org/auth/realms/test/protocol/openid-connect/auth*",
+                            "optional": true,
                             "commands": [
                                 [
                                     "text",
@@ -771,49 +773,16 @@
                     "match": "https://as.keycloak-fapi.org/auth/realms/test/protocol/openid-connect/auth*",
                     "tasks": [
                         {
-                            "task": "Initial login",
+                            "task": "expect an immediate redirect back to the conformance suite with an error",
                             "match": "https://as.keycloak-fapi.org/auth/realms/test/protocol/openid-connect/auth*",
-                            "commands": [
-                                [
-                                    "text",
-                                    "id",
-                                    "username",
-                                    "mike"
-                                ],
-                                [
-                                    "text",
-                                    "id",
-                                    "password",
-                                    "mike"
-                                ],
-                                [
-                                    "click",
-                                    "name",
-                                    "login"
-                                ]
-                            ]
-                        },
-                        {
-                            "task": "Authorize Client",
-                            "match": "https://as.keycloak-fapi.org/auth/realms/test/login-actions/required-action*",
-                            "commands": [
-                                [
-                                    "click",
-                                    "name",
-                                    "cancel"
-                                ]
-                            ]
-                        },
-                        {
-                            "task": "Expect immediate error about signing key",
-                            "match": "https://conformance-suite.keycloak-fapi.org/test/a/keycloak/callback*",
                             "commands": [
                                 [
                                     "wait",
                                     "xpath",
                                     "//*",
                                     10,
-                                    ".*"
+                                    ".*",
+                                    "update-image-placeholder"
                                 ]
                             ]
                         }
