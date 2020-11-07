@@ -10,4 +10,4 @@ done
 sleep 20
  
 [ $AUTOMATE_TESTS == true ] &&
-docker exec keycloak-fapi_server_1 bash -c "/conformance-suite/run-tests.sh --server-tests-only"
+docker exec keycloak-fapi_server_1 bash -c "/conformance-suite/.gitlab-ci/run-tests.sh --server-tests-only"
